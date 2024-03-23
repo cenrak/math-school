@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fun with Divisions: Exploring Numbers!</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #f0f8ff; /* Light blue background */
+        font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    }
+    .quizArea {
+        text-align: center;
+        margin: 20px;
+    }
+    .question {
+        font-size: 48px;
+        color: #333366; /* Dark blue color */
+        margin: 20px auto;
+    }
+    .answer {
+        font-size: 36px;
+        color: #333366; /* Lime Green color for friendliness */
+        margin-top: 20px;
+    }
+    button {
+        font-size: 24px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        background-color: #4caf50; /* Green color */
+        box-shadow: 0 4px #999;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    button:active {
+        background-color: #45a049;
+        box-shadow: 0 2px #666;
+        transform: translateY(4px);
+    }
+    .newQuestionBtn {
+        background-color: #1e90ff; /* Blue color */
+    }
+</style>
+</head>
+<body>
+
+<div class="quizArea">
+    <div class="question">Press "New Question" to start</div>
+</div>
+<button class="newQuestionBtn" onclick="generateQuestion()">New Question</button>
+
+<script>
+function generateQuestion() {
+    // Generate a random division problem
+    var dividend = (Math.floor(Math.random() * 800) + 200) / 100; // Generates numbers from 2.00 to 10.00
+    var divisor = Math.floor(Math.random() * 8) + 2; // Generates numbers from 2 to 9
+    var answer = (dividend / divisor).toFixed(2); // Ensures the answer has exactly 2 decimal places
+
+    // Update the webpage with the new question and embed the "Show Answer" functionality
+    document.querySelector('.quizArea').innerHTML = `
+        <div class="question">${dividend} ÷ ${divisor} = 
+            <button onclick="this.innerHTML='${answer}'; this.disabled=true; this.className='answer';">Show Answer</button>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
