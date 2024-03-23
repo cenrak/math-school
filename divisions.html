@@ -8,35 +8,37 @@
     body, html {
         height: 100%;
         margin: 0;
+        padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: #f0f8ff; /* Light blue background */
+        background-color: #f0f8ff;
         font-family: 'Comic Sans MS', 'Arial', sans-serif;
     }
     .quizArea {
         text-align: center;
+        max-width: 90%;
         margin: 20px;
     }
     .question {
-        font-size: 48px;
-        color: #333366; /* Dark blue color */
+        font-size: 4vw;
+        color: #333366;
         margin: 20px auto;
     }
     .answer {
-        font-size: 36px;
-        color: #333366; /* Lime Green color for friendliness */
+        font-size: 3vw;
+        color: #333366;
         margin-top: 20px;
     }
     button {
-        font-size: 24px;
-        padding: 10px 20px;
+        font-size: 3vw;
+        padding: 1vw 2vw;
         cursor: pointer;
         border: none;
         border-radius: 10px;
         color: white;
-        background-color: #4caf50; /* Green color */
+        background-color: #4caf50;
         box-shadow: 0 4px #999;
     }
     button:hover {
@@ -48,7 +50,11 @@
         transform: translateY(4px);
     }
     .newQuestionBtn {
-        background-color: #1e90ff; /* Blue color */
+        background-color: #1e90ff;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 </style>
 </head>
@@ -61,10 +67,12 @@
 
 <script>
 function generateQuestion() {
-    // Generate a random division problem
-    var dividend = (Math.floor(Math.random() * 800) + 200) / 100; // Generates numbers from 2.00 to 10.00
-    var divisor = Math.floor(Math.random() * 8) + 2; // Generates numbers from 2 to 9
-    var answer = (dividend / divisor).toFixed(2); // Ensures the answer has exactly 2 decimal places
+    // Start with an answer that has exactly two decimal places
+    var answer = (Math.floor(Math.random() * 899) + 100) / 100; // 1.00 to 9.99
+    // Choose a divisor that ensures the dividend will be a real number
+    var divisor = Math.floor(Math.random() * 8) + 2; // 2 to 9
+    // Calculate the dividend using the answer and divisor, ensuring it's a real number
+    var dividend = (answer * divisor).toFixed(2);
 
     // Update the webpage with the new question and embed the "Show Answer" functionality
     document.querySelector('.quizArea').innerHTML = `
