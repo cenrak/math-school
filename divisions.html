@@ -67,17 +67,15 @@
 
 <script>
 function generateQuestion() {
-    // Start with an answer that has exactly two decimal places
-    var answer = (Math.floor(Math.random() * 899) + 100) / 100; // 1.00 to 9.99
-    // Choose a divisor that ensures the dividend will be a real number
-    var divisor = Math.floor(Math.random() * 8) + 2; // 2 to 9
-    // Calculate the dividend using the answer and divisor, ensuring it's a real number
-    var dividend = (answer * divisor).toFixed(2);
+    // Ensure the answer will naturally have exactly two decimal places
+    var answer = Math.floor(Math.random() * (999 - 100 + 1) + 100); // 100 to 999
+    var divisor = Math.floor(Math.random() * (9 - 2 + 1) + 2); // 2 to 9
+    var dividend = answer * divisor;
 
-    // Update the webpage with the new question and embed the "Show Answer" functionality
+    // Display the question and the "Show Answer" button
     document.querySelector('.quizArea').innerHTML = `
         <div class="question">${dividend} ÷ ${divisor} = 
-            <button onclick="this.innerHTML='${answer}'; this.disabled=true; this.className='answer';">Show Answer</button>
+            <button onclick="this.innerHTML='${(answer / 100).toFixed(2)}'; this.disabled=true; this.className='answer';">Show Answer</button>
         </div>
     `;
 }
